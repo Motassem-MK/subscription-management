@@ -35,6 +35,16 @@ class Registry extends Model
         return $this->belongsTo(Application::class);
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function subscription()
+    {
+        return $this->subscriptions()->latest()->first();
+    }
+
     private static function generateToken()
     {
         return md5(uniqid(null, true));

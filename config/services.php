@@ -30,4 +30,13 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'subscription_providers' => [
+        'Google' => [
+            'endpoint_url' => env('GOOGLE_PLAY_URL')
+        ],
+        'Apple' => [
+            'endpoint_url' => env('APPLE_STORE_URL')
+        ]
+    ],
+
 ];

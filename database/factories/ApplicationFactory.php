@@ -24,29 +24,31 @@ class ApplicationFactory extends Factory
     {
         return [
             'appID' => Str::random(36),
+            'apple_api_credentials' => [
+                'username' => $this->faker->userName,
+                'password' => Str::random(5)
+            ],
+            'google_api_credentials' => [
+                'username' => $this->faker->userName,
+                'password' => Str::random(5)
+            ]
         ];
     }
 
-    public function withAppleStore()
+    public function withoutAppleStore()
     {
         return $this->state(function (array $attributes) {
             return [
-                'apple_api_credentials' => [
-                    'username' => $this->faker->userName,
-                    'password' => Str::random(5)
-                ]
+                'apple_api_credentials' => null
             ];
         });
     }
 
-    public function withGooglePlay()
+    public function withoutGooglePlay()
     {
         return $this->state(function (array $attributes) {
             return [
-                'google_api_credentials' => [
-                    'username' => $this->faker->userName,
-                    'password' => Str::random(5)
-                ]
+                'google_api_credentials' => null
             ];
         });
     }

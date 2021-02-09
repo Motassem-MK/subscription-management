@@ -12,6 +12,8 @@ class RegistrationTest extends TestCase
 {
     use RefreshDatabase;
 
+    private $endpoint = '/api/register';
+
     /**
      * @test
      */
@@ -25,7 +27,7 @@ class RegistrationTest extends TestCase
             'os' => Device::OS_IOS
         ];
 
-        $response = $this->postJson('/api/register', $inputs);
+        $response = $this->postJson($this->endpoint, $inputs);
 
         $this->assertDatabaseHas('devices', [
             'uID' => $inputs['uID'],
@@ -52,7 +54,7 @@ class RegistrationTest extends TestCase
             'os' => $registry->device->os
         ];
 
-        $response = $this->postJson('/api/register', $inputs);
+        $response = $this->postJson($this->endpoint, $inputs);
 
         $this->assertEquals($registry->client_token, $response['client-token']);
         $response->assertOk();
@@ -72,7 +74,7 @@ class RegistrationTest extends TestCase
             'os' => $registry->device->os
         ];
 
-        $response = $this->postJson('/api/register', $inputs);
+        $response = $this->postJson($this->endpoint, $inputs);
 
         $this->assertDatabaseCount('registries', 2);
         $this->assertNotEquals($registry->client_token, $response['client-token']);
