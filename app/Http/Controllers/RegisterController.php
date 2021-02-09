@@ -11,13 +11,10 @@ class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $request)
     {
-        $application = Application::where('appID', $request->input('appID'))->first();
-        $device = Device::firstOrCreate(['uID' => $request->input('uID')], ['os' => $request->input('os')]);
+        $application = Application::getByAppID($request->input('appID'));
+        $device = Device::getByUIDOrCreate($request->input('uID'), ['os' => $request->input('os')]);
 
-        $registry = Registry::firstOrCreate(
-            ['device_id' => $device->id, 'application_id' => $application->id],
-            $request->validated()
-        );
+        $registry = Registry::getByDevAndAppOrCreate($device->id, $application->id, $request->validated());
 
         return response()->json(['client-token' => $registry->client_token]);
     }

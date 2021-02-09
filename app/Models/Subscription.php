@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use App\Events\SubscriptionCanceled;
+use App\Events\SubscriptionRenewed;
+use App\Events\SubscriptionStarted;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

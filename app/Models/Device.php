@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Device extends Model
 {
@@ -25,5 +26,11 @@ class Device extends Model
     public function registries()
     {
         return $this->hasMany(Registry::class);
+    }
+
+    public static function getByUIDOrCreate(string $uID, array $attributes): Device {
+        return Cache::rememberForever('DEVICE_BY_UID_' . $uID, function () use ($uID, $attributes) {
+            return Device::firstOrCreate(['uID' => $uID], ['os' => $attributes['os']]);
+        });
     }
 }
