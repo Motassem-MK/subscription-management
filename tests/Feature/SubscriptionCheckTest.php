@@ -6,7 +6,7 @@ use App\Models\Registry;
 use App\Models\Subscription;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Tests\Traits\MocksExternalEndpoints;
+use Tests\Feature\Traits\MocksExternalEndpoints;
 
 class SubscriptionCheckTest extends TestCase
 {

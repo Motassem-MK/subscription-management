@@ -3,8 +3,6 @@
 namespace App\Listeners\SubscriptionStatusChange;
 
 use App\Events\SubscriptionRenewed;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SubscriptionRenewedListener extends BaseSubscriptionStatusChangeListener
 {

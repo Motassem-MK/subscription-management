@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Traits;
+namespace Tests\Feature\Traits;
 
 use Illuminate\Support\Facades\Http;
 

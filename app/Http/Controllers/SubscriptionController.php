@@ -56,5 +56,4 @@ class SubscriptionController extends Controller
 
         return response()->json(['status' => 'valid', 'expiration_date' => $subscription->expiration_date]);
     }
-
 }

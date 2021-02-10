@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
-use Tests\Traits\MocksExternalEndpoints;
+use Tests\Feature\Traits\MocksExternalEndpoints;
 
 class PurchaseTest extends TestCase
 {

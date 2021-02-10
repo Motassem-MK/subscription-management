@@ -17,7 +17,7 @@ class CreateRegistriesTable extends Migration
             $table->id();
             $table->unsignedInteger('application_id');
             $table->enum('language', config('app.supported_languages'));
-            $table->string('client_token', 32);
+            $table->string('client_token', 32)->unique();
             $table->timestamps();
 
             $table->unique(['device_id', 'application_id']);

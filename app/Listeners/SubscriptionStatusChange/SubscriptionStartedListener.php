@@ -3,8 +3,6 @@
 namespace App\Listeners\SubscriptionStatusChange;
 
 use App\Events\SubscriptionStarted;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class SubscriptionStartedListener extends BaseSubscriptionStatusChangeListener
 {
