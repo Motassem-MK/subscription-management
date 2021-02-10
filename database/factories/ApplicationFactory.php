@@ -31,7 +31,8 @@ class ApplicationFactory extends Factory
             'google_api_credentials' => [
                 'username' => $this->faker->userName,
                 'password' => Str::random(5)
-            ]
+            ],
+            'third_party_endpoint' => $this->faker->url
         ];
     }
 

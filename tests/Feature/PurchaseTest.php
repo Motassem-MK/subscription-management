@@ -6,20 +6,20 @@ use App\Models\Registry;
 use App\Models\Subscription;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Tests\TestCase;
+use Tests\Traits\MocksExternalEndpoints;
 
 class PurchaseTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, MocksExternalEndpoints;
 
     private $endpoint = '/api/subscriptions/purchase';
 
     protected function setUp(): void
     {
         parent::setUp();
-        $this->mockSubscriptionProviderAPI();
+        $this->mockExternalEndpoints();
     }
 
     /**
@@ -92,21 +92,5 @@ class PurchaseTest extends TestCase
     private function generateInvalidReceipt(): string
     {
         return Str::random(10) . '2';
-    }
-
-    private function mockSubscriptionProviderAPI()
-    {
-        Http::fake(function ($request) {
-            if ($this->checkReceiptIsValid($request['receipt'])) {
-                return Http::response(['status' => 'success', 'expiration_date' => '2021-06-10 20:00:00'], 200);
-            }
-            return Http::response(['status' => 'failed'], 400);
-        });
-    }
-
-    private function checkReceiptIsValid(string $receipt): bool
-    {
-        $last_character = (int)substr($receipt, -1);
-        return $last_character % 2 != 0;
     }
 }

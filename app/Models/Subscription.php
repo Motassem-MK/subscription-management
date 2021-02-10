@@ -37,6 +37,23 @@ class Subscription extends Model
         return in_array($this->status, [self::STATUS_STARTED, self::STATUS_RENEWED]);
     }
 
+    protected static function booted()
+    {
+        static::created(function ($subscription) {
+            switch ($subscription->status) {
+                case self::STATUS_STARTED:
+                    SubscriptionStarted::dispatch($subscription);
+                    break;
+                case self::STATUS_RENEWED:
+                    SubscriptionRenewed::dispatch($subscription);
+                    break;
+                case self::STATUS_EXPIRED:
+                    SubscriptionCanceled::dispatch($subscription);
+                    break;
+            }
+        });
+    }
+
     public function registry()
     {
         return $this->belongsTo(Registry::class);

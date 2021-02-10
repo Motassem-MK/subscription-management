@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use App\Events\SubscriptionCanceled;
+use App\Events\SubscriptionRenewed;
+use App\Events\SubscriptionStarted;
+use App\Listeners\SubscriptionStatusChange\SubscriptionCanceledListener;
+use App\Listeners\SubscriptionStatusChange\SubscriptionRenewedListener;
+use App\Listeners\SubscriptionStatusChange\SubscriptionStartedListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -15,8 +18,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        SubscriptionStarted::class => [
+            SubscriptionStartedListener::class,
+        ],
+        SubscriptionRenewed::class => [
+            SubscriptionRenewedListener::class,
+        ],
+        SubscriptionCanceled::class => [
+            SubscriptionCanceledListener::class,
         ],
     ];
 

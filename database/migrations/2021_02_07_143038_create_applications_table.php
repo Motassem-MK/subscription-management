@@ -18,6 +18,7 @@ class CreateApplicationsTable extends Migration
             $table->string('appID', 255)->unique();
             $table->json('google_api_credentials')->nullable();
             $table->json('apple_api_credentials')->nullable();
+            $table->string('third_party_endpoint');
             $table->timestamps();
         });
     }

@@ -6,12 +6,19 @@ use App\Models\Registry;
 use App\Models\Subscription;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Tests\Traits\MocksExternalEndpoints;
 
 class SubscriptionCheckTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, MocksExternalEndpoints;
 
     private $endpoint = '/api/subscriptions/check-status';
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->mockExternalEndpoints();
+    }
 
     /**
      * @test
