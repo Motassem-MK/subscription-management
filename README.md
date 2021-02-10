@@ -7,9 +7,11 @@
 - PHP 7.3+
 
 ## Setup
+- Run `cp .env.example .env`
 - Install dependencies by running `composer install`
 - Start Sail to build and run the docker container `./vendor/bin/sail up -d`
-- For the scope of the assignment, we can run the scheduler simply using `./vendor/bin/sail artisan schedule:work`
+- Run `./vendor/bin/sail artisan key:generate`
+- For the scope of the assignment, we can run the scheduler using `./vendor/bin/sail artisan schedule:work`
 
 ## Testing
 The project was built using TDD practice, to run all tests `./vendor/bin/sail artisan test`
