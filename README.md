@@ -19,7 +19,7 @@ The project was built using TDD practice, to run all tests `./vendor/bin/sail ar
 ## Notes
 
 ### Device
-- Concerning `uID`, I assumed that we'll use the device's `GAID`/`IDFA` identifiers, which both consist of 32 hex numbers plus 4 dashes (36 letters in total).
+- Concerning `uID`, I assumed that we'll use the device's `GAID`/`IDFA` identifiers, both of which consist of 32 hex numbers plus 4 dashes (36 letters in total).
 - I assumed that a user can have a different language for each application on the same device.
 - It's stated in the requirements that a different client-token must be created for each device, which -unless I misunderstood the sentence- is not enough, in order to identify which subscription to be checked, a different token should be created for each application in the device as well. 
 
@@ -37,7 +37,7 @@ to figure out the max_length for it, I had to find the maximum length of the sma
 Thus, the smallest bottleneck has the maximum length of 255 characters.
 
 #### APIs Credentials
-both `google_api_credentials` and `apple_api_credentials` are nullable to tolerate that certain apps can only have an Android or iOS versions.
+both `google_api_credentials` and `apple_api_credentials` are nullable to tolerate that certain apps can only have an Android or iOS version.
 
 ### Why not two simple tables?
 - To allow having a different language for each application on the same device.
